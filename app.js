@@ -6,6 +6,10 @@
     },
 
     doSomething: function() {
+    	this.switchTo('main', {
+    		id: this.ticket().id(),
+    		description: this.ticket().description()
+    	});
     }
   };
 
