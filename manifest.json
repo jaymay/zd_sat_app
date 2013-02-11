@@ -1,0 +1,11 @@
+{
+  "name": "Satisfaction Prediction App",
+  "author": {
+    "name": "Jason Maynard",
+    "email": "jmaynard@zendesk.com"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": "ticket_sidebar",
+  "frameworkVersion": "0.5"
+}
