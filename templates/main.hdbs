@@ -2,3 +2,4 @@
 	<p><div class="bold">ID:</div> {{id}}</p>
 	<p><div class="bold">Description:</div> {{description}}</p>
 </div>
+<button class="predict">Predict</button>
