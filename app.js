@@ -15,6 +15,18 @@
           data: data
         };
       }
+      //Get the following data from the Zendesk API to pass as features to the Predicton API
+        //subject,
+        //description,
+        //ticket_type_id,
+        //reopens,
+        //replies,
+        //group_stations,
+        //first_reply_time_in_minutes,
+        //requester_wait_time_in_minutes,
+        //industry,
+        //employee_count,
+        //target_audience
     },
 
     doSomething: function() {
