@@ -14,7 +14,7 @@
           type: 'POST',
           data: data
         };
-      }
+      },
       //Get the following data from the Zendesk API to pass as features to the Predicton API
         //subject,
         //description,
@@ -27,6 +27,18 @@
         //industry,
         //employee_count,
         //target_audience
+      'getStats' : function(){
+        return{
+          url: '/api/v2/tickets/{id}/metrics.json',
+          type: 'GET'
+        };
+      },
+      'getBenchmark' : function(){
+        return{
+          url: '/api/v2/tickets/{id}/metrics.json',
+          type: 'GET'
+        };
+      } 
     },
 
     doSomething: function() {
