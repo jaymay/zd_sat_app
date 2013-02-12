@@ -1,16 +1,14 @@
 (function() {
-
   return {
     events: {
-      'app.activated':'doSomething'
+      'app.activated':'fetchText'
     },
-
-    doSomething: function() {
-    	this.switchTo('main', {
-    		id: this.ticket().id(),
-    		description: this.ticket().description()
-    	});
+    fetchText: function() {
+      this.switchTo('main', {
+        id: this.ticket().id(),
+        subject: this.ticket().subject(),
+        description: this.ticket().description()
+      });
     }
   };
-
 }());
