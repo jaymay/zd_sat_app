@@ -1,12 +1,10 @@
-Zendesk Google Satisfaction Prediction App
+Ticket Satisfaction Prediction App
 ==========
 
-This app is designed to predict customer satisfaction rating for tickets in Zendesk using the Google Prediction API.
+Project Goals:
 
-Jason updated this section.
+- Enable predictive support decisions based on ticket and account features
+- Provide contextual satisfaction “risk” information to agents while updating tickets
+- Improve agent decision making through historical satisfaction classification across Zendesk
 
-Jason updated this section again.
-
-Jason updated this section.
-
-Brian was here
+This app utilizes the Google Prediction API v1.5. <https://developers.google.com/prediction/>
