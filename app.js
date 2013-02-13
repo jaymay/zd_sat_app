@@ -9,7 +9,7 @@
     events: {
       'app.activated':'doSomething',
       'click .predict':'sendData',
-      'getStats.done':'handleGetStats',
+      'getStats.done':'handleGetStats',  //TODO: Change event handler to sendData event
       'getStats.fail':'handleError'
     },
 
@@ -17,23 +17,13 @@
       'postData' : function(data, key){
         return {
           // For more info about jQuery AJAX -> http://api.jquery.com/jQuery.ajax/
+          // TODO: Get Ruby server to send request for OAUTH token
           url: helpers.fmt(GOOGLE_API_URL,key),
           type: 'POST',
           data: data
         };
       },
-      //Get the following data from the Zendesk API to pass as features to the Predicton API
-        //subject,
-        //description,
-        //ticket_type_id,
-        //reopens,
-        //replies,
-        //group_stations,
-        //first_reply_time_in_minutes,
-        //requester_wait_time_in_minutes,
-        //industry,
-        //employee_count,
-        //target_audience
+
       'getStats' : function(ticketID){
         return{
           url: helpers.fmt(METRICS_URL, ticketID),
@@ -58,19 +48,29 @@
       var ticket_metric = data.ticket_metric;
 
       console.log(ticket_metric); // See what data is returned
-
+      console.log("ticket_type: " + this.ticket().type());
       console.log("reopens: " + ticket_metric.reopens); // How many times has it been reopened?
-      console.log("reply_time_in_minutes (calendar): " + ticket_metric.reply_time_in_minutes.calendar);
+      console.log("replies: " + ticket_metric.replies);
+      console.log("group_stations: " + ticket_metric.group_stations);
+      console.log("reply_time_in_minutes: " + ticket_metric.reply_time_in_minutes.calendar);
+      console.log("req_wait_time_in_minutes: " + ticket_metric.requester_wait_time_in_minutes.calendar);
+      //TODO: Add account benchmark features
 
     },
 
     // When the button with .predict is pressed, this function will fire
-    sendData: function() {
+    sendData: function(data) {
       // Which then calls the request "postData", and should pass through the data (at the moment it's an empty object)
+      var ticket_metric = data.ticket_metric;
       this.ajax( 'postData', {
         subject: this.ticket().subject(),
         description: this.ticket().description(),
-        ticket_type: this.ticket().ticket_type_id()
+        ticket_type: this.ticket().type(),
+        reopens: ticket_metric.reopens,
+        replies: ticket_metric.replies,
+        group_stations: ticket_metric.group_stations,
+        first_reply_time_in_minutes: ticket_metric.reply_time_in_minutes.calendar,
+        req_wait_time_in_minutes: ticket_metric.requester_wait_time_in_minutes.calendar
       });
     },
 
