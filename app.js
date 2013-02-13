@@ -3,12 +3,13 @@
   var METRICS_URL     = '/api/v2/tickets/%@/metrics.json',
       GOOGLE_API_URL    = 'https://www.googleapis.com/prediction/v1.5/hostedmodels/zendesk/predict?%@',
       OPTION_TEMPLATE = '<option value="%@">%@</option>';
-  
+
   return {
 
     events: {
       'app.activated':'doSomething',
-      'click .predict':'sendData'
+      'click .predict':'sendData',
+      'getStats.done':'handleGetStats'
     },
 
     requests: {
@@ -37,26 +38,34 @@
           url: helpers.fmt(METRICS_URL, ticketID),
           type: 'GET'
         };
-      },
-      
-      doSomething: function() {
+      }
+    },
+
+    doSomething: function() {
         this.switchTo('main', {
           id: this.ticket().id(),
           subject: this.ticket().subject(),
           description: this.ticket().description()
         });
+
+        // Request the metrics about the ticket
+        this.ajax('getStats', this.ticket().id());
       },
 
-    // When the button with .predict is pressed, this function will fire
+      // When data is returned from the metrics api, do something
+      handleGetStats: function(data){
+        console.log(data); // See what is returned
+      },
+
+      // When the button with .predict is pressed, this function will fire
       sendData: function() {
         // Which then calls the request "postData", and should pass through the data (at the moment it's an empty object)
         this.ajax( 'postData', {
-          subject: this.ticket().subject(), 
+          subject: this.ticket().subject(),
           description: this.ticket().description(),
-          ticket_type: this.ticket().ticket_type_id(),
-          reopens: this.
+          ticket_type: this.ticket().ticket_type_id()
         });
       }
-    }
+
   };
 }());
