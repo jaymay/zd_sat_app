@@ -51,7 +51,10 @@
       sendData: function() {
         // Which then calls the request "postData", and should pass through the data (at the moment it's an empty object)
         this.ajax( 'postData', {
-          id: this.ticket().id, description: this.ticket().description()
+          subject: this.ticket().subject(), 
+          description: this.ticket().description(),
+          ticket_type: this.ticket().ticket_type_id(),
+          reopens: this.
         });
       }
     }
