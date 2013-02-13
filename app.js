@@ -54,7 +54,13 @@
 
       // When data is returned from the metrics api, do something
       handleGetStats: function(data){
-        console.log(data); // See what is returned
+        var ticket_metric = data.ticket_metric;
+
+        console.log(ticket_metric); // See what data is returned
+
+        console.log("reopens: " + ticket_metric.reopens); // How many times has it been reopened?
+        console.log("reply_time_in_minutes (calendar): " + ticket_metric.reply_time_in_minutes.calendar);
+
       },
 
       // When the button with .predict is pressed, this function will fire
