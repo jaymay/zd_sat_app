@@ -1,4 +1,9 @@
 (function() {
+
+  var METRICS_URL     = '/api/v2/tickets/%@/metrics.json',
+      GOOGLE_API_URL    = 'https://www.googleapis.com/prediction/v1.5/hostedmodels/zendesk/predict?%@',
+      OPTION_TEMPLATE = '<option value="%@">%@</option>';
+  
   return {
 
     events: {
@@ -7,10 +12,10 @@
     },
 
     requests: {
-      'postData' : function(data){
+      'postData' : function(data, key){
         return {
           // For more info about jQuery AJAX -> http://api.jquery.com/jQuery.ajax/
-          url: 'https://www.googleapis.com/prediction/v1.5/hostedmodels/zendesk/predict',
+          url: helpers.fmt(GOOGLE_API_URL,key),
           type: 'POST',
           data: data
         };
@@ -27,34 +32,28 @@
         //industry,
         //employee_count,
         //target_audience
-      'getStats' : function(){
+      'getStats' : function(ticketID){
         return{
-          url: '/api/v2/tickets/{id}/metrics.json',
+          url: helpers.fmt(METRICS_URL, ticketID),
           type: 'GET'
         };
       },
-      'getBenchmark' : function(){
-        return{
-          url: '/api/v2/tickets/{id}/metrics.json',
-          type: 'GET'
-        };
-      } 
-    },
-
-    doSomething: function() {
-      this.switchTo('main', {
-        id: this.ticket().id(),
-        subject: this.ticket().subject(),
-        description: this.ticket().description()
-      });
-    },
+      
+      doSomething: function() {
+        this.switchTo('main', {
+          id: this.ticket().id(),
+          subject: this.ticket().subject(),
+          description: this.ticket().description()
+        });
+      },
 
     // When the button with .predict is pressed, this function will fire
-    sendData: function() {
-      // Which then calls the request "postData", and should pass through the data (at the moment it's an empty object)
-      this.ajax( 'postData', {
-        id: this.ticket().id, description: this.ticket().description()
-      });
+      sendData: function() {
+        // Which then calls the request "postData", and should pass through the data (at the moment it's an empty object)
+        this.ajax( 'postData', {
+          id: this.ticket().id, description: this.ticket().description()
+        });
+      }
     }
   };
 }());
