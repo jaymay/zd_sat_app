@@ -1,6 +1,7 @@
 (function() {
 
   var METRICS_URL     = '/api/v2/tickets/%@/metrics.json',
+      TICKET_AUDITS_URL = '/api/v2/tickets/%@/audits.json',
       GOOGLE_API_URL    = 'https://www.googleapis.com/prediction/v1.5/hostedmodels/zendesk/predict?%@',
       OPTION_TEMPLATE = '<option value="%@">%@</option>';
 
@@ -10,7 +11,9 @@
       'app.activated':'doSomething',
       'click .predict':'sendData',
       'getStats.done':'handleGetStats',  //TODO: Change event handler to sendData event
-      'getStats.fail':'handleError'
+      'getAudits.done':'handleGetAudits',
+      'getStats.fail':'handleError',
+      'getAudits.fail':'handleError'
     },
 
     requests: {
@@ -27,6 +30,13 @@
       'getStats' : function(ticketID){
         return{
           url: helpers.fmt(METRICS_URL, ticketID),
+          type: 'GET'
+        };
+      },
+
+      'getAudits' : function(ticketID){
+        return{
+          url: helpers.fmt(TICKET_AUDITS_URL, ticketID),
           type: 'GET'
         };
       }
@@ -54,8 +64,15 @@
       console.log("group_stations: " + ticket_metric.group_stations);
       console.log("reply_time_in_minutes: " + ticket_metric.reply_time_in_minutes.calendar);
       console.log("req_wait_time_in_minutes: " + ticket_metric.requester_wait_time_in_minutes.calendar);
+      console.log("comment: " + this.comment().text());
       //TODO: Add account benchmark features
 
+    },
+    // When data is returned from the metrics api, do something
+    handleGetAudits: function(data){
+      var ticket_audits = data.audits;
+
+      console.log('hello');
     },
 
     // When the button with .predict is pressed, this function will fire
