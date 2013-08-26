@@ -1,6 +1,4 @@
 <div>
-	<p><div class="bold">ID:</div> {{id}}</p>
-	<p><div class="bold">Replies: </div> {{subject}}</p>
-	<p><div class="bold">Description:</div> {{description}}</p>
+	<p><span class="bold">Rating:</span> {{rating}}</p>
+	<p><span class="bold">Score: </span> {{score}}</p>
 </div>
-<button class="predict">Predict</button>

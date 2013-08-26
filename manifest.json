@@ -7,5 +7,18 @@
   "defaultLocale": "en",
   "private": true,
   "location": "ticket_sidebar",
-  "frameworkVersion": "0.5"
+  "frameworkVersion": "1.0",
+  "parameters": [
+    {
+      "name": "predictionRating",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "predictionScore",
+      "type": "text",
+      "required": true
+    }
+  ]
+
 }
