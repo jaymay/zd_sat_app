@@ -1,10 +1,10 @@
-Ticket Satisfaction Prediction App
+ZenSat App
 ==========
 
-Project Goals:
+Description
+The ZenSat app is the sidebar display that renders the satisfaction prediction scores that are returned from the Google Prediction API.
+- Renders predicted rating and score in the sidebar
+- Hides the custom fields that contain the ratings
+- Alerts agent when a score has not yet been calculated
 
-- Enable predictive support decisions based on ticket and account features
-- Provide contextual satisfaction “risk” information to agents while updating tickets
-- Improve agent decision making through historical satisfaction classification across Zendesk
-
-This app utilizes the Google Prediction API v1.5. <https://developers.google.com/prediction/>
+Submit any bugs or feedback to support@zendesk.com.
