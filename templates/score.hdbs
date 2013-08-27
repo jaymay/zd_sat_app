@@ -1,4 +1,4 @@
 <div>
-	<p><span class="bold">Rating:</span> {{rating}}</p>
-	<p><span class="bold">Score: </span> {{score}}</p>
+	<p><span class="bold">Predicted Rating:</span> {{rating}}</p>
+	<p><span class="bold">Prediction Score: </span> {{score}}</p>
 </div>

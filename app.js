@@ -15,11 +15,17 @@
       ratingField.hide();
       scoreField.hide();
 
-      // Render layout
-      this.switchTo('score', {
-        rating: ratingValue,
-        score: scoreValue
-      });
+     // ratingField.disable();
+     // scoreField.disable();
+
+      if (ratingValue === "") {
+        this.switchTo('no_score');
+      } else {
+        this.switchTo('score', {
+          rating: ratingValue,
+          score: Math.round(scoreValue * 100) / 100
+        });
+      }
     },
 
     customFieldName: function(name){
