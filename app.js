@@ -15,10 +15,10 @@
       ratingField.hide();
       scoreField.hide();
 
-     // ratingField.disable();
-     // scoreField.disable();
+      ratingField.disable();
+      scoreField.disable();
 
-      if (ratingValue === "") {
+      if (ratingValue === "" || ratingValue === null) {
         this.switchTo('no_score');
       } else {
         this.switchTo('score', {
