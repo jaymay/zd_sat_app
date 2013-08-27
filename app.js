@@ -7,17 +7,23 @@
 
     init: function() {
       // Hide 2 custom fields
-      var ratingField = this.ticketFields('custom_field_' + this.setting('predictionRating'));
-      ratingField.hide();
+      var ratingField = this.ticketFields( this.customFieldName('predictionRating') ),
+          scoreField = this.ticketFields( this.customFieldName('predictionScore') ),
+          ratingValue = this.ticket().customField( this.customFieldName('predictionRating') ),
+          scoreValue = this.ticket().customField( this.customFieldName('predictionScore') );
 
-      var scoreField = this.ticketFields('custom_field_' + this.setting('predictionScore'));
+      ratingField.hide();
       scoreField.hide();
 
       // Render layout
-      this.switchTo('main', {
-        rating: ratingField.value(),
-        score: scoreField.value()
+      this.switchTo('score', {
+        rating: ratingValue,
+        score: scoreValue
       });
+    },
+
+    customFieldName: function(name){
+      return 'custom_field_' + this.setting(name);
     }
 
   };

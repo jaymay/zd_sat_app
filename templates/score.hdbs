@@ -1,0 +1,4 @@
+<div>
+	<p><span class="bold">Rating:</span> {{rating}}</p>
+	<p><span class="bold">Score: </span> {{score}}</p>
+</div>
