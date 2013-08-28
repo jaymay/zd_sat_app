@@ -16,7 +16,7 @@
     },
     {
       "name": "predictionScore",
-      "type": "decimal",
+      "type": "text",
       "required": true
     }
   ]
